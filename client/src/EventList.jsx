@@ -1,6 +1,5 @@
-import {useEffect, useState} from "react"
 import api from './api'
-import {Stack, Button} from "@mui/material"
+import {Stack, Button, Typography} from "@mui/material"
 import Grid from "@mui/material/Grid2"
 import Paper from "@mui/material/Paper"
 
@@ -51,15 +50,19 @@ function EventItem({data, fetchEvents}) {
     return (
         <Paper sx={{paddingTop: '20px', paddingBottom: '20px'}} elevation={2}>
             <Grid container spacing={2}>
-                <Grid size={6}>{data.title}{recurString}</Grid>
+                <Grid size={6}>
+                    <Typography variant="h6" gutterBottom>
+                        {data.title}{recurString}
+                    </Typography>
+                </Grid>
                 <Grid>
                     <Stack>
-                        <div><b>Starts: </b> {start}</div>
-                        <div><b>Ends: </b> {end}</div>
+                        <Typography variant="body1" gutterBottom><b>Starts: </b> {start}</Typography>
+                        <Typography variant="body1" gutterBottom><b>Ends: </b> {end}</Typography>
+                        <Button size="small" onClick={() => deleteEvent(data.id)} variant="outlined"
+                                color="error">Delete</Button>
                     </Stack>
                 </Grid>
-                <Grid><Button size="small" onClick={() => deleteEvent(data.id)} variant="outlined"
-                              color="error">Delete</Button></Grid>
             </Grid>
         </Paper>
     )

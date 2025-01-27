@@ -215,6 +215,15 @@ function EventForm({open, handleClose, fetchEvents, timeZone}) {
             .then(function (response) {
                 fetchEvents();
                 closeForm();
+                setEventData({
+                    title: '',
+                    recurring: false,
+                    recurring_days: [],
+                    start: null,
+                    end: null,
+                    recur_start: null,
+                    recur_end: null
+                });
             })
             .catch(function (error) {
                 if (error.response && error.response.data && error.response.data.error) {
